@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MITRA BHUM AI Dashboard</title>
+    <link
+    rel="icon"
+    href="data:image/svg+xml,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+        <text y='.9em' font-size='90'>🚢</text>
+    </svg>"
+>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            🚢 MITRA BHUM V.2654N
+        </h1>
+
+        <div class="toolbar">
+
+            <div id="clock">
+                02:50
+            </div>
+
+            <button
+                id="playButton"
+                type="button"
+                onclick="playSimulation()"
+            >
+                ▶ Chạy
+            </button>
+
+            <button
+                id="nextEventButton"
+                type="button"
+                onclick="nextEvent()"
+            >
+                ⏭ Đến sự kiện tiếp
+            </button>
+
+            <button
+                id="resetButton"
+                type="button"
+                onclick="resetSimulation()"
+            >
+                🔄 Chạy lại từ đầu
+            </button>
+
+            <button
+                id="exportButton"
+                type="button"
+                onclick="exportExcel()"
+            >
+                📥 Xuất Excel
+            </button>
+
+        </div>
+
+        <div class="kpi-grid">
+
+            <div class="kpi">
+                <h3>Empty</h3>
+                <div id="emptyValue">0/109</div>
+            </div>
+
+            <div class="kpi">
+                <h3>Full</h3>
+                <div id="fullValue">0/123</div>
+            </div>
+
+            <div class="kpi">
+                <h3>Total</h3>
+                <div id="totalValue">0/232</div>
+            </div>
+
+            <div class="kpi">
+                <h3>Completion</h3>
+                <div id="completionValue">0.0%</div>
+            </div>
+
+        </div>
+
+        <div class="crane-panel">
+
+            <h2>🏗 Tiến độ 3 cẩu bờ</h2>
+
+            <div class="crane">
+
+                <div class="crane-header">
+                    <strong>Cẩu 1</strong>
+                    <span>Bay 06, 02</span>
+                </div>
+
+                <div class="progress">
+                    <div id="crane1" class="fill"></div>
+                </div>
+
+                <div id="crane1Info" class="crane-info">
+                    0/55 cont | 27.05 cont/giờ | Dự báo xong 05:30
+                </div>
+
+            </div>
+
+            <div class="crane">
+
+                <div class="crane-header">
+                    <strong>Cẩu 2</strong>
+                    <span>Bay 20</span>
+                </div>
+
+                <div class="progress">
+                    <div id="crane2" class="fill"></div>
+                </div>
+
+                <div id="crane2Info" class="crane-info">
+                    0/91 cont | 27.86 cont/giờ | Dự báo xong 06:44
+                </div>
+
+            </div>
+
+            <div class="crane">
+
+                <div class="crane-header">
+                    <strong>Cẩu 3</strong>
+                    <span>Bay 30</span>
+                </div>
+
+                <div class="progress">
+                    <div id="crane3" class="fill"></div>
+                </div>
+
+                <div id="crane3Info" class="crane-info">
+                    0/86 cont | 27.16 cont/giờ | Dự báo xong 06:38
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="alertBox"></div>
+
+        <div
+            id="chartsSection"
+            style="display: none;"
+        >
+
+            <div class="chart-card">
+                <div id="craneChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <div id="containerChart"></div>
+            </div>
+
+            <div class="chart-card">
+                <div id="timelineChart"></div>
+            </div>
+
+        </div>
+
+        <div class="log-panel">
+
+            <div class="log-header">
+
+                <h2>
+                    📜 NHẬT KÝ HỆ THỐNG
+                </h2>
+
+                <span
+                    class="log-counter"
+                    id="logCounter"
+                >
+                    0 sự kiện
+                </span>
+
+            </div>
+
+            <div
+                id="logList"
+                class="log-list"
+            ></div>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
